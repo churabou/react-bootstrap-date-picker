@@ -17,8 +17,8 @@
     "test": "test"
   },
   "peerDependencies": {
-    "react": ">=0.14.0",
-    "react-bootstrap": "^0.31.0"
+    "react": ">=0.15.6",
+    "react-bootstrap": "^0.32.3"
   },
   "devDependencies": {
     "assert": "^1.4.1",
@@ -54,9 +54,9 @@
     "mocha-babel": "^3.0.3",
     "node-uuid": "^1.4.7",
     "prop-types": "^15.5.8",
-    "react": "^15.5.4",
-    "react-bootstrap": "^0.31.0",
-    "react-dom": "^15.5.4",
+    "react": "^16.0.0",
+    "react-bootstrap": "^0.32.3",
+    "react-dom": "^16.0.0",
     "regenerator": "^0.8.46",
     "regenerator-loader": "^3.1.0",
     "transform-loader": "^0.2.4",
