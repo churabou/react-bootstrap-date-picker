@@ -159,34 +159,36 @@ const Calendar = createReactClass({
       const week = [];
       for (let j = 0; j <= 6; j++) {
         if (day <= monthLength && (i > 0 || j >= startingDay)) {
-          let className = null;
           const date = new Date(year, month, day, 12, 0, 0, 0).toISOString();
           const beforeMinDate = minDate && Date.parse(date) < Date.parse(minDate);
           const afterMinDate = maxDate && Date.parse(date) > Date.parse(maxDate);
           if (beforeMinDate || afterMinDate) {
             week.push(<td
-              key={j}
+              key={`day-td-${j}`}
               style={{ padding: this.props.cellPadding }}
               className="text-muted"
             >
               {day}
             </td>);
-          } else if (Date.parse(date) === Date.parse(selectedDate)) {
-            className = 'bg-primary';
-          } else if (Date.parse(date) === Date.parse(currentDate)) {
-            className = 'text-primary';
+          } else {
+            let className = null;
+            if (Date.parse(date) === Date.parse(selectedDate)) {
+              className = 'bg-primary';
+            } else if (Date.parse(date) === Date.parse(currentDate)) {
+              className = 'text-primary';
+            }
+            week.push(<td
+              key={`day-td-${j}`}
+              onClick={this.handleClick.bind(this, day)}
+              style={{ cursor: 'pointer', padding: this.props.cellPadding, borderRadius: this.props.roundedCorners ? 5 : 0 }}
+              className={className}
+            >
+              {day}
+            </td>);
           }
-          week.push(<td
-            key={j}
-            onClick={this.handleClick.bind(this, day)}
-            style={{ cursor: 'pointer', padding: this.props.cellPadding, borderRadius: this.props.roundedCorners ? 5 : 0 }}
-            className={className}
-          >
-            {day}
-          </td>);
           day++;
         } else {
-          week.push(<td key={j} />);
+          week.push(<td key={`td-empty-${j}`} />);
         }
       }
 
@@ -203,7 +205,7 @@ const Calendar = createReactClass({
 
       }
 
-      weeks.push(<tr key={i}>{week}</tr>);
+      weeks.push(<tr key={`tr-week-${i}`}>{week}</tr>);
       if (day > monthLength) {
         break;
       }
